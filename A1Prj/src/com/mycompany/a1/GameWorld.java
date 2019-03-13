@@ -16,8 +16,6 @@ import Objects.NonPlayerShip;
 import Objects.PlayerShip;
 import Objects.SpaceStation;
 
-
-
 public class GameWorld{
 
 	//Attributes for the class GameWorld----------------------------------------------------------------
@@ -59,6 +57,7 @@ public class GameWorld{
 		
 		asteroid = new Asteroid();
 		worldList.add(asteroid);
+		System.out.println("New asteroid created");
 		
 	}
 	
@@ -67,6 +66,7 @@ public class GameWorld{
 		
 		nps = new NonPlayerShip();
 		worldList.add(nps);
+		System.out.println("New non player ship created");
 		
 	}
 	
@@ -75,6 +75,7 @@ public class GameWorld{
 		
 		spaceStation = new SpaceStation();
 		worldList.add(spaceStation);
+		System.out.println("New space station created");
 		
 	}
 	
@@ -84,6 +85,7 @@ public class GameWorld{
 		if(!worldList.contains(ps)) {
 			ps = new PlayerShip();
 			worldList.add(ps);
+			System.out.println("New player ship created");
 		}
 		else
 			System.out.println("Error! Cannot create more than one player ship\n");			//Enforcing that only one player ship should exist at any time
@@ -93,8 +95,10 @@ public class GameWorld{
 	//Method to increase the speed of the player ship
 	public void increasePsSpeed() {
 		
-		if(worldList.contains(ps))
+		if(worldList.contains(ps)) {
+			System.out.println("PS speed increased");
 			ps.increaseSpeedPs();
+		}
 		else
 			System.out.println("Error! Player ship not found. Create one first by typing in 's'\n");
 		
@@ -103,8 +107,10 @@ public class GameWorld{
 	//Method to decrease the speed of the player ship
 	public void decreasePsSpeed() {
 		
-		if(worldList.contains(ps))
+		if(worldList.contains(ps)) {
+			System.out.println("PS speed decreased");
 			ps.decreaseSpeedPs();
+		}
 		else
 			System.out.println("Error! Player ship not found. Create one first by typing in 's'\n");
 		
@@ -113,8 +119,10 @@ public class GameWorld{
 	//Method to turn the Player ship left by a small amount
 	public void turnPsLeft() {
 		
-		if(worldList.contains(ps))
+		if(worldList.contains(ps)) {
+			System.out.println("turned PS left");
 			ps.steerLeft();
+		}
 		else
 			System.out.println("Error! Player ship not found. Create one first by typing in 's'\n");
 		
@@ -124,8 +132,10 @@ public class GameWorld{
 	//Method to turn the player ship right by a small amount
 	public void turnPsRight() {
 		
-		if(worldList.contains(ps))
+		if(worldList.contains(ps)) {
+			System.out.println("turned PS right");
 			ps.steerRight();
+		}
 		else
 			System.out.println("Error! Player ship not found. Create one first by typing in 's'\n");
 		
@@ -135,8 +145,10 @@ public class GameWorld{
 	//Method to let the user determine the direction and amount by which the player ship turns
 	public void turnPsUser() {
 		
-		if(worldList.contains(ps))
+		if(worldList.contains(ps)) {
+			System.out.println("Manually turned PS ");
 			ps.steerManual();
+		}
 		else
 			System.out.println("Error! Player ship not found. Create one first by typing in 's'\n");
 		
@@ -156,6 +168,8 @@ public class GameWorld{
 				
 				//Decrementing the missile count for the player ship
 				ps.setMissileCount(ps.getMissileCount() - 1);
+				
+				System.out.println("PS missile fired");
 				
 			}
 			else
@@ -180,6 +194,8 @@ public class GameWorld{
 				//Decrementing the missile count for the non player ship
 				nps.setNpsMissileCount(nps.getNpsMissileCount() - 1);
 				
+				System.out.println("NPS missile fired");
+				
 			}
 			else
 				System.out.println("The non player ship has run out of missiles!\n");
@@ -196,6 +212,7 @@ public class GameWorld{
 		if(worldList.contains(ps)) {
 
 			ps.defaultLocationPs();
+			System.out.println("PS hyperjump!");
 			
 		}
 		else
@@ -210,6 +227,7 @@ public class GameWorld{
 		if(worldList.contains(ps)) {
 
 			ps.setMaxMissiles();
+			System.out.println("Missiles loaded");
 			
 		}
 		else
@@ -260,6 +278,7 @@ public class GameWorld{
 					
 					worldList.remove(tempAsteroid);
 					worldList.remove(tempMissile);
+					System.out.println("Asteroid and PS Missile destroyed");
 					
 				}
 				else
@@ -319,6 +338,7 @@ public class GameWorld{
 					
 					worldList.remove(tempNps);
 					worldList.remove(tempMissile);
+					System.out.println("NPS and PS Missile destroyed");
 					
 				}
 				else
@@ -365,6 +385,8 @@ public class GameWorld{
 				
 				worldList.remove(tempMissile);
 				worldList.remove(ps);
+				
+				System.out.println("PS and NPS Missile destroyed");
 					
 				if(life > 1) 
 					life--;
@@ -407,6 +429,8 @@ public class GameWorld{
 				worldList.remove(ps);
 				worldList.remove(temp);
 				
+				System.out.println("PS crashed into asteroid");
+				
 				if(life > 1) 
 					life--;
 				else if(life == 1)
@@ -447,6 +471,8 @@ public class GameWorld{
 				
 				worldList.remove(ps);
 				worldList.remove(tempNps);
+				
+				System.out.println("PS has hit NPS");
 				
 				if(life > 1) 
 					life--;
@@ -493,6 +519,7 @@ public class GameWorld{
 				worldList.remove(temp[count]);
 				count--;
 				worldList.remove(temp[count]);
+				System.out.println("Two asteroids destroyed");
 				
 			}
 			else
@@ -508,17 +535,7 @@ public class GameWorld{
 	 *  removed from the game
 	 */
 	public void asteroidCollidesNps() {
-		
-		/*if(worldList.contains(asteroid) && worldList.contains(nps)) {
-			
-			worldList.remove(asteroid);
-			worldList.remove(nps);
-			
-		}
-		else
-			System.out.println("Error! Either a non player ship or an asteroid needs to be added in the game\n");
-		*/
-		
+				
 		Asteroid tempAsteroid = new Asteroid();
 		NonPlayerShip tempNps = new NonPlayerShip();
 		int count = 0;
@@ -553,6 +570,7 @@ public class GameWorld{
 					
 					worldList.remove(tempAsteroid);
 					worldList.remove(tempNps);
+					System.out.println("Asteroid collided with NPS");
 					
 				}
 				else
@@ -575,6 +593,7 @@ public class GameWorld{
 	public void tick() {
 		
 		time++;
+		System.out.println("Game Clock ticked");
 		
 		if(!worldList.isEmpty()) {
 			
@@ -650,6 +669,7 @@ public class GameWorld{
 	//Method to quit the game. This method asks the user for confirmation before exiting from the game
 	public void quit() {	
 		
+		System.out.println("Quit option selected");
 		new ClosingApp();
 		
 	}

@@ -76,7 +76,7 @@ public class Game extends Form{
 						break;
 						
 					case 'r':
-						gw.turnPsLeft();
+						gw.turnPsRight();
 						break;
 						
 					case '>':
